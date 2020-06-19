@@ -1,0 +1,113 @@
+class Author:
+    def __init__(self,authorname,authormail,gender):
+        self.authorname=authorname
+        self.authormail=authormail
+        self.gender=gender
+    def authordetails(self):
+        print(f"author name is {self.authorname},author mail id is {self.authormail}and author gender is {self.gender}")
+class Book(Author):
+    def __init__(self,ISBN,bookname,yearofpublish,price,authorname,authormail,gender,author):
+        #super().__init__(authorname,authormail,gender)
+        self.ISBN=ISBN
+        self.bookname=bookname
+        self.yearofpublish=yearofpublish
+        self.price=price
+        self.authorname=authorname
+        self.authormail=authormail
+        self.gender=gender
+        
+        self.author=Author(authorname,authormail,gender)
+    def bookdetails(self):
+        print(f"{self.ISBN},{self.bookname},{self.price}")
+    
+class Bookmanagement:
+    h=[]
+    def addbook(self):
+        isbn=int(input("enter the inbn number: "))
+        name=input("enter the book name: ")
+        poy=input("enter the publishing date: ")
+        price=(input("enter the price: "))
+        authorname=input("enter the author name: ")
+        authormail=input("enter the author mail: ")
+        gender=input("enter the gender: ")
+        b1=Book(isbn,name,poy,price,authorname,authormail,gender,Author(authorname,authormail,gender))
+        Bookmanagement.h.append(b1)
+        print("Add book is successfully")
+    def searchbook(self):
+        isb=int(input("enter the search by isbn: "))
+        for var in Bookmanagement.h:
+            if(var.ISBN== isb):
+                print("True") 
+                break
+            else:
+                 print("False") 
+    def detailsbook(self):
+        for var in Bookmanagement.h:
+            var.bookdetails()
+    def authordetails(self):
+        for var in Bookmanagement.h:
+            var.authordetails()
+    def updatebookdetails(self):
+        isd=int(input("enter the isdn number which book to update: "))
+        updatedbookname=input("enter the updated book name: ")
+        updatedyop=input("enter the updated year of published: ")
+        price=input("enter the price of book: ")
+        for var in Bookmanagement.h:
+            if(var.ISBN==isd):
+                var.bookname=updatedbookname
+                var.yearofpublish=updatedyop
+                var.price=price
+                print("update is sucessfully")
+            else:
+                print("you are enter the wrong ISBN number")
+if __name__ == "__main__":
+
+
+    bookmanage=Bookmanagement()
+    #print("1.addbook \n 2.searchbook \n 3.detailsbook \n 4.authordetails \n 5.update book \n 6.exit\n")
+    cont=True
+    while(cont):
+         print("1.addbook \n 2.searchbook \n 3.detailsbook \n 4.authordetails \n 5.update book \n 6.exit\n")
+        ch=int(input("please enter your choice:"))
+        if(ch==1):
+            bookmanage.addbook()
+        if (ch==2):
+            bookmanage.searchbook()
+
+        if(ch==3):
+            bookmanage.detailsbook()
+
+        if(ch==4):
+            bookmanage.authordetails()
+        if(ch==5):
+            bookmanage.updatebookdetails()
+        if(ch==6):
+            print("Thanx for participating...........")
+            cont=False
+
+
+
+
+
+
+    
+
+
+
+
+
+                
+
+            
+            
+        
+        
+    
+
+        
+       
+    
+
+
+
+
